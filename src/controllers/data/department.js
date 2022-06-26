@@ -38,22 +38,23 @@ const addDepartment = async (req, res) => {
 };
 
 const deleteDepartment = async (req, res) => {
-  return res.send("delete department");
-  // try {
-  //   const [departments] = await req.db.query("SELECT * FROM departments");
+  try {
+    const { id } = req.params;
 
-  //   return res.json({
-  //     success: true,
-  //     data: departments,
-  //   });
-  // } catch (error) {
-  //   console.log(`[ERROR: Failed to get departments | ${error.message}]`);
+    await req.db.query("DELETE FROM departments WHERE id=?", [id]);
 
-  //   return res.status(500).json({
-  //     success: false,
-  //     error: "Failed to get departments",
-  //   });
-  // }
+    return res.json({
+      success: true,
+      message: "department successfully deleted",
+    });
+  } catch (error) {
+    console.log(`[ERROR: Failed to remove department | ${error.message}]`);
+
+    return res.status(500).json({
+      success: false,
+      error: "Failed to remove department",
+    });
+  }
 };
 
 module.exports = { viewAllDepartments, addDepartment, deleteDepartment };
