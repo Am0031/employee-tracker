@@ -4,6 +4,7 @@ const {
   addEmployee,
   deleteEmployee,
   viewAEmployeesByDepartment,
+  viewAEmployeesByManager,
 } = require("../../controllers/data/employees");
 
 const router = Router();
@@ -11,6 +12,7 @@ const router = Router();
 router.get("/", viewAllEmployees);
 router.post("/", addEmployee);
 router.delete("/:id", deleteEmployee);
-router.get("/:depId", viewAEmployeesByDepartment);
+router.get("/department/:depId", viewAEmployeesByDepartment);
+router.get("/manager/:managerId", viewAEmployeesByManager);
 
 module.exports = router;
