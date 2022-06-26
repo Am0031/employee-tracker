@@ -1,3 +1,5 @@
+const inquirer = require("inquirer");
+
 const selectionQuestion = {
   type: "list",
   message: "Please select an action:",
