@@ -17,22 +17,24 @@ const viewAllDepartments = async (req, res) => {
 };
 
 const addDepartment = async (req, res) => {
-  return res.send("add department");
-  // try {
-  //   const [departments] = await req.db.query("SELECT * FROM departments");
+  try {
+    const payload = req.body;
 
-  //   return res.json({
-  //     success: true,
-  //     data: departments,
-  //   });
-  // } catch (error) {
-  //   console.log(`[ERROR: Failed to get departments | ${error.message}]`);
+    await req.db.query("INSERT INTO departments (depName) VALUES (?)", [
+      payload.depName,
+    ]);
 
-  //   return res.status(500).json({
-  //     success: false,
-  //     error: "Failed to get departments",
-  //   });
-  // }
+    return res.json({
+      success: true,
+    });
+  } catch (error) {
+    console.log(`[ERROR: Failed to add department | ${error.message}]`);
+
+    return res.status(500).json({
+      success: false,
+      error: "Failed to add department",
+    });
+  }
 };
 
 const deleteDepartment = async (req, res) => {
