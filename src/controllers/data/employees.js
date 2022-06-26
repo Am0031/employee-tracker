@@ -16,6 +16,34 @@ const viewAllEmployees = async (req, res) => {
   }
 };
 
+const viewAEmployeesByDepartment = async (req, res) => {
+  try {
+    const { depId } = req.params;
+    const [filteredEmployees] = await req.db.query(
+      `SELECT employees.id, employees.firstName AS 'first name', employees.lastName AS 'last name', roles.title AS 'role', departments.depName AS 'department'  
+      FROM employees 
+      LEFT JOIN roles ON employees.roleId = roles.id 
+      LEFT JOIN departments ON roles.depId = departments.id 
+      WHERE departments.id =?`,
+      [depId]
+    );
+
+    return res.json({
+      success: true,
+      data: filteredEmployees,
+    });
+  } catch (error) {
+    console.log(
+      `[ERROR: Failed to get employees for that department | ${error.message}]`
+    );
+
+    return res.status(500).json({
+      success: false,
+      error: "Failed to get employees for that department",
+    });
+  }
+};
+
 const addEmployee = async (req, res) => {
   try {
     const payload = req.body;
@@ -59,4 +87,9 @@ const deleteEmployee = async (req, res) => {
   }
 };
 
-module.exports = { viewAllEmployees, addEmployee, deleteEmployee };
+module.exports = {
+  viewAllEmployees,
+  viewAEmployeesByDepartment,
+  addEmployee,
+  deleteEmployee,
+};

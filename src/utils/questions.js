@@ -6,32 +6,32 @@ const selectionQuestion = {
     {
       value: "viewAllDepartments",
       name: "View All Departments",
-      short: "allDepartments",
+      short: "viewAllDepartments",
     },
     {
       value: "viewAllRoles",
       name: "View All Roles",
-      short: "allRoles",
+      short: "viewAllRoles",
     },
     {
       value: "viewAllEmployees",
       name: "View All Employees",
-      short: "allEmployees",
+      short: "viewAllEmployees",
     },
     {
-      value: "employeesByDepartment",
+      value: "viewEmployeesByDepartment",
       name: "View All Employees by Department",
-      short: "employeesByDepartment",
+      short: "viewEmployeesByDepartment",
     },
     {
-      value: "employeesByManager",
+      value: "viewEmployeesByManager",
       name: "View All Employees by Manager",
-      short: "employeesByManager",
+      short: "viewEmployeesByManager",
     },
     {
-      value: "departmentSpend",
+      value: "viewDepartmentSpend",
       name: "View total department spend",
-      short: "departmentSpend",
+      short: "viewDepartmentSpend",
     },
     {
       value: "addDepartment",
