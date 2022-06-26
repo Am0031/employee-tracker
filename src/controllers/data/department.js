@@ -37,7 +37,7 @@ const addDepartment = async (req, res) => {
   }
 };
 
-const deleteDepartment = async (req, res) => {
+const removeDepartment = async (req, res) => {
   try {
     const { id } = req.params;
 
@@ -57,4 +57,4 @@ const deleteDepartment = async (req, res) => {
   }
 };
 
-module.exports = { viewAllDepartments, addDepartment, deleteDepartment };
+module.exports = { viewAllDepartments, addDepartment, removeDepartment };

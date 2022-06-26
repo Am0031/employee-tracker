@@ -2,13 +2,13 @@ const { Router } = require("express");
 const {
   viewAllDepartments,
   addDepartment,
-  deleteDepartment,
+  removeDepartment,
 } = require("../../controllers/data/department");
 
 const router = Router();
 
 router.get("/", viewAllDepartments);
 router.post("/", addDepartment);
-router.delete("/:id", deleteDepartment);
+router.delete("/:id", removeDepartment);
 
 module.exports = router;

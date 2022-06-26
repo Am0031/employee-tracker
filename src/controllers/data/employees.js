@@ -95,7 +95,29 @@ const addEmployee = async (req, res) => {
   }
 };
 
-const deleteEmployee = async (req, res) => {
+const updateEmployee = async (req, res) => {
+  try {
+    const payload = req.body;
+
+    await req.db.query(
+      `UPDATE employees SET managerId = "${payload.managerId}" WHERE id="${payload.employeeId}"`
+    );
+
+    return res.json({
+      success: true,
+      message: "employee successfully updated",
+    });
+  } catch (error) {
+    console.log(`[ERROR: Failed to update employee | ${error.message}]`);
+
+    return res.status(500).json({
+      success: false,
+      error: "Failed to update employee",
+    });
+  }
+};
+
+const removeEmployee = async (req, res) => {
   try {
     const { id } = req.params;
 
@@ -120,5 +142,6 @@ module.exports = {
   viewAEmployeesByDepartment,
   viewEmployeesByManager,
   addEmployee,
-  deleteEmployee,
+  updateEmployee,
+  removeEmployee,
 };

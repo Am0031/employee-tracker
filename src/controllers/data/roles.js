@@ -39,7 +39,7 @@ const addRole = async (req, res) => {
   }
 };
 
-const deleteRole = async (req, res) => {
+const removeRole = async (req, res) => {
   try {
     const { id } = req.params;
 
@@ -59,4 +59,4 @@ const deleteRole = async (req, res) => {
   }
 };
 
-module.exports = { viewAllRoles, addRole, deleteRole };
+module.exports = { viewAllRoles, addRole, removeRole };
