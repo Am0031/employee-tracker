@@ -1,3 +1,3 @@
 USE company_db;
 
-INSERT INTO roles(title, salary, depId) VALUES ("Finance Director", 100000, 1), ("Finance Analyst", 50000, 1), ("Sales Director", 85000, 2), ("Sales Team member", 35000, 2), ("Production Director", 100000, 3), ("Production Technician", 50000, 3), ("Operations Director", 100000, 4), ("Operations Team Lead", 60000, 4), ("Operations Team Member", 40000, 4), ("HR Director", 100000, 5), ("HR Team Member", 35000, 5), ("IT Director", 100000, 6), ("IT Technician", 30000, 6)
+INSERT INTO roles(title, salary, depId) VALUES ("Finance Director", 100000, 1), ("Finance Analyst", 50000, 1), ("Sales Director", 85000, 2), ("Sales Team member", 35000, 2), ("Production Director", 100000, 3), ("Production Technician", 50000, 3), ("Operations Director", 100000, 4), ("Operations Team Lead", 60000, 4), ("Operations Team Member", 40000, 4), ("HR Director", 100000, 5), ("HR Team Member", 35000, 5), ("IT Director", 100000, 6), ("IT Technician", 30000, 6);
