@@ -18,14 +18,14 @@ const viewAllEmployees = async (req, res) => {
 
 const viewEmployeesByDepartment = async (req, res) => {
   try {
-    const { depId } = req.params;
+    const { id } = req.params;
     const [filteredEmployees] = await req.db.query(
       `SELECT employees.id, employees.firstName AS 'first name', employees.lastName AS 'last name', roles.title AS 'role', departments.depName AS 'department'  
       FROM employees 
       LEFT JOIN roles ON employees.roleId = roles.id 
       LEFT JOIN departments ON roles.depId = departments.id 
       WHERE departments.id =?`,
-      [depId]
+      [id]
     );
 
     return res.json({
@@ -46,14 +46,14 @@ const viewEmployeesByDepartment = async (req, res) => {
 
 const viewEmployeesByManager = async (req, res) => {
   try {
-    const { managerId } = req.params;
+    const { id } = req.params;
     const [filteredEmployees] = await req.db.query(
-      `SELECT employees.id, employees.firstName AS 'first name', employees.lastName AS 'last name', roles.title AS 'role', CONCAT (employeeManager.firstName, " ", employeeManager.lastName) AS "Manager"
-      FROM employees
-      LEFT JOIN roles ON employees.roleId = roles.id
-      LEFT JOIN employees employeeManager ON employees.managerId = employeeManager.id
-      WHERE employees.managerId =?`,
-      [managerId]
+      `SELECT emp.id, emp.firstName AS 'first name', emp.lastName AS 'last name', roles.title AS 'role', CONCAT (employeeManager.firstName, " ", employeeManager.lastName) AS "Manager"
+      FROM employees emp
+      LEFT JOIN roles ON emp.roleId = roles.id
+      LEFT JOIN employees employeeManager ON emp.managerId = employeeManager.id
+      WHERE emp.managerId =?`,
+      [id]
     );
 
     return res.json({

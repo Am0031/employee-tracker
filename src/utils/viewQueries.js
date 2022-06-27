@@ -151,13 +151,7 @@ const getDepartmentSpend = async () => {
     });
     if (response.ok) {
       const result = (await response.json()).data;
-      const totalSpend = result.reduce((accumulator, object) => {
-        return accumulator + object.salary;
-      }, 0);
-      return {
-        result,
-        totalSpend,
-      };
+      return result;
     } else {
       throw new Error("Failed to fetch data");
     }

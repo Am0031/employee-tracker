@@ -60,18 +60,18 @@ const removeDepartment = async (req, res) => {
 const viewDepartmentSpend = async (req, res) => {
   try {
     const { depId } = req.params;
-    const [filteredEmployees] = await req.db.query(
-      `SELECT employees.id, roles.title AS 'role', roles.salary AS 'salary', departments.depName AS 'department'  
-      FROM employees 
-      LEFT JOIN roles ON employees.roleId = roles.id 
-      LEFT JOIN departments ON roles.depId = departments.id 
-      WHERE departments.id =?`,
+    const depSpend = await req.db.query(
+      `SELECT departments.depName as "Department", SUM(roles.salary) "Department Spend"
+    FROM employees
+    LEFT JOIN roles ON roles.id = employees.roleId
+    LEFT JOIN departments ON roles.depId = departments.id
+    WHERE departments.id = ?`,
       [depId]
     );
 
     return res.json({
       success: true,
-      data: filteredEmployees,
+      data: depSpend,
     });
   } catch (error) {
     console.log(`[ERROR: Failed to get department spend | ${error.message}]`);
