@@ -7,20 +7,6 @@ const generateChoiceList = (array, name) => {
   });
 };
 
-const generateManagerList = (array) => {
-  const getManagerInfo = (each) => {
-    const index = array.findIndex((element) => element.id === each);
-    return {
-      value: array[index].id,
-      name: `${array[index].firstName} ${array[index].lastName}`,
-    };
-  };
-  const managerId = array
-    .filter((m) => m.managerId !== null)
-    .map((m) => m.managerId);
-  return managerId.map(getManagerInfo);
-};
-
 const generateEmployeeList = (array) => {
   const getManagerInfo = (each) => {
     return {
@@ -33,6 +19,5 @@ const generateEmployeeList = (array) => {
 
 module.exports = {
   generateChoiceList,
-  generateManagerList,
   generateEmployeeList,
 };

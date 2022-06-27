@@ -4,7 +4,6 @@ const inquirer = require("inquirer");
 const getAnswers = require("./getAnswers");
 const {
   generateChoiceList,
-  generateManagerList,
   generateEmployeeList,
 } = require("./generateChoiceList");
 const PORT = process.env.PORT || 4000;
@@ -70,6 +69,26 @@ const getAllEmployees = async () => {
   }
 };
 
+const getManagers = async () => {
+  try {
+    const response = await fetch(`${baseUrl}/api/managers`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (response.ok) {
+      const result = (await response.json()).data;
+      return result;
+    } else {
+      throw new Error("Failed to fetch data");
+    }
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
 const getEmployeesByDepartment = async () => {
   try {
     const departments = await getAllDepartments();
@@ -102,13 +121,13 @@ const getEmployeesByDepartment = async () => {
 
 const getEmployeesByManager = async () => {
   try {
-    const employees = await getAllEmployees();
+    const managers = await getManagers();
 
     const managerSelection = {
       type: "list",
       message: "Please choose a manager to see its employees:",
       name: "id",
-      choices: generateManagerList(employees),
+      choices: generateEmployeeList(managers),
     };
 
     const { id } = await getAnswers(managerSelection);
@@ -133,6 +152,7 @@ const getEmployeesByManager = async () => {
 module.exports = {
   getAllDepartments,
   getAllEmployees,
+  getManagers,
   getEmployeesByDepartment,
   getAllRoles,
   getEmployeesByManager,
