@@ -12,11 +12,11 @@ const generateManagerList = (array) => {
     const index = array.findIndex((element) => element.id === each);
     return {
       value: array[index].id,
-      name: `${array[index].firstName} ${array[index.lastName]}`,
+      name: `${array[index].firstName} ${array[index].lastName}`,
     };
   };
   const managerId = array
-    .filter((m) => m.managerId !== "null")
+    .filter((m) => m.managerId !== null)
     .map((m) => m.managerId);
   return managerId.map(getManagerInfo);
 };

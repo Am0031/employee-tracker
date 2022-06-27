@@ -108,7 +108,7 @@ const getEmployeesByManager = async () => {
       type: "list",
       message: "Please choose a manager to see its employees:",
       name: "id",
-      choices: generateEmployeeList(employees),
+      choices: generateManagerList(employees),
     };
 
     const { id } = await getAnswers(managerSelection);
