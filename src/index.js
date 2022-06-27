@@ -54,7 +54,7 @@ const init = async () => {
     }
     if (selection === "addEmployee") {
       const result = await addEmployee();
-      console.log("Employee successfully added");
+      console.log(result);
     }
     if (selection === "updateEmployee") {
       const result = await updateEmployee();

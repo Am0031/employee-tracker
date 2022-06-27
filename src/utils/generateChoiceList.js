@@ -21,4 +21,18 @@ const generateManagerList = (array) => {
   return managerId.map(getManagerInfo);
 };
 
-module.exports = { generateChoiceList, generateManagerList };
+const generateEmployeeList = (array) => {
+  const getManagerInfo = (each) => {
+    return {
+      id: each.id,
+      name: `${each.firstName} ${each.lastName}`,
+    };
+  };
+  return array.map(getManagerInfo);
+};
+
+module.exports = {
+  generateChoiceList,
+  generateManagerList,
+  generateEmployeeList,
+};
