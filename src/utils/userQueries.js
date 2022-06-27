@@ -1,9 +1,12 @@
+require("dotenv").config();
 const fetch = require("node-fetch");
 const cTable = require("console.table");
+const PORT = process.env.PORT || 4000;
+const baseUrl = `http://${process.env.DB_HOST}:${PORT}`;
 
 const getAllDepartments = async () => {
   try {
-    const response = await fetch("http://localhost:4000/api/departments", {
+    const response = await fetch(`${baseUrl}/api/departments`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -23,7 +26,7 @@ const getAllDepartments = async () => {
 
 const getAllEmployees = async () => {
   try {
-    const response = await fetch("http://localhost:4000/api/employees", {
+    const response = await fetch(`${baseUrl}/api/employees`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
