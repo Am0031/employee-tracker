@@ -1,6 +1,7 @@
 require("dotenv").config();
 const fetch = require("node-fetch");
 const inquirer = require("inquirer");
+const getAnswers = require("./getAnswers");
 const { generateChoiceList } = require("./generateChoiceList");
 const PORT = process.env.PORT || 4000;
 const baseUrl = `http://${process.env.DB_HOST}:${PORT}`;
@@ -76,7 +77,7 @@ const getEmployeesByDepartment = async () => {
       choices: generateChoiceList(departments, "depName"),
     };
 
-    const { id } = await inquirer.prompt(departmentSelection);
+    const { id } = await getAnswers(departmentSelection);
 
     const response = await fetch(`${baseUrl}/api/employees/department/${id}`, {
       method: "GET",
@@ -106,7 +107,7 @@ const getEmployeesByManager = async () => {
       choices: generateManagerList(employees),
     };
 
-    const { id } = await inquirer.prompt(managerSelection);
+    const { id } = await getAnswers(managerSelection);
 
     const response = await fetch(`${baseUrl}/api/employees/manager/${id}`, {
       method: "GET",

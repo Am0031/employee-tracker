@@ -8,10 +8,14 @@ const {
   getAllRoles,
   getEmployeesByManager,
 } = require("./utils/viewQueries");
+const { addDepartment, addRole, addEmployee } = require("./utils/addQueries");
+const {
+  removeDepartment,
+  removeRole,
+  removeEmployee,
+} = require("./utils/removeQueries");
+const { updateEmployee } = require("./utils/updateQueries");
 const cTable = require("console.table");
-const { addDepartment } = require("./controllers/data/department");
-const { addRole } = require("./controllers/data/roles");
-const { addEmployee } = require("./controllers/data/employees");
 
 const init = async () => {
   startApp();

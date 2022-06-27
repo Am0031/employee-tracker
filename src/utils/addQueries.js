@@ -1,6 +1,6 @@
 require("dotenv").config();
 const fetch = require("node-fetch");
-const inquirer = require("inquirer");
+const getAnswers = require("./getAnswers");
 const {
   generateEmployeeList,
   generateChoiceList,
@@ -27,7 +27,7 @@ const addDepartment = async () => {
       },
     ];
 
-    const { depName } = await inquirer.prompt(addDepartmentQuestions);
+    const { depName } = await getAnswers(addDepartmentQuestions);
 
     const data = { depName };
     const response = await fetch(`${baseUrl}/api/departments`, {
@@ -76,7 +76,7 @@ const addRole = async () => {
           choices: generateChoiceList(departments, "depName"),
         },
       ];
-      const { title, salary, depId } = await inquirer.prompt(addRoleQuestions);
+      const { title, salary, depId } = await getAnswers(addRoleQuestions);
 
       const data = { title, salary, depId };
       const response = await fetch(`${baseUrl}/api/roles`, {
@@ -127,7 +127,7 @@ const addEmployee = async () => {
           choices: generateChoiceList(roles, "title"),
         },
       ];
-      const { firstName, lastName, roleId } = await inquirer.prompt(
+      const { firstName, lastName, roleId } = await getAnswers(
         addEmployeeQuestions
       );
 
@@ -164,7 +164,7 @@ const addEmployee = async () => {
             choices: generateEmployeeList(employees),
           },
         ];
-        const { managerId } = await inquirer.prompt(addManagerQuestions);
+        const { managerId } = await getAnswers(addManagerQuestions);
         const data = { firstName, lastName, roleId, managerId };
         const response = await fetch(`${baseUrl}/api/employees`, {
           method: "POST",

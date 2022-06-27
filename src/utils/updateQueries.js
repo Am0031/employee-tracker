@@ -1,12 +1,12 @@
 require("dotenv").config();
 const fetch = require("node-fetch");
-const inquirer = require("inquirer");
+const getAnswers = require("./getAnswers");
 const { generateEmployeeList } = require("./generateChoiceList");
 const { getAllEmployees } = require("./viewQueries");
 const PORT = process.env.PORT || 4000;
 const baseUrl = `http://${process.env.DB_HOST}:${PORT}`;
 
-const updateManager = async () => {
+const updateEmployee = async () => {
   try {
     const employees = await getAllEmployees();
 
@@ -19,7 +19,7 @@ const updateManager = async () => {
       },
     ];
 
-    const employeeId = (await inquirer.prompt(pickEmployeeQuestions)).id;
+    const employeeId = (await getAnswers(pickEmployeeQuestions)).id;
     const filteredEmployees = employees.filter((e) => e.id !== employeeId);
 
     const pickManagerQuestions = [
@@ -31,7 +31,7 @@ const updateManager = async () => {
       },
     ];
 
-    const managerId = (await inquirer.prompt(pickManagerQuestions)).id;
+    const managerId = (await getAnswers(pickManagerQuestions)).id;
 
     const data = {
       employeeId,
@@ -54,4 +54,4 @@ const updateManager = async () => {
   }
 };
 
-module.exports = { updateManager };
+module.exports = { updateEmployee };
