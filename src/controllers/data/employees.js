@@ -16,7 +16,7 @@ const viewAllEmployees = async (req, res) => {
   }
 };
 
-const viewAEmployeesByDepartment = async (req, res) => {
+const viewEmployeesByDepartment = async (req, res) => {
   try {
     const { depId } = req.params;
     const [filteredEmployees] = await req.db.query(
@@ -139,7 +139,7 @@ const removeEmployee = async (req, res) => {
 
 module.exports = {
   viewAllEmployees,
-  viewAEmployeesByDepartment,
+  viewEmployeesByDepartment,
   viewEmployeesByManager,
   addEmployee,
   updateEmployee,
