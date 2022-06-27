@@ -126,10 +126,47 @@ const getEmployeesByManager = async () => {
   }
 };
 
+const getDepartmentSpend = async () => {
+  try {
+    const departments = await getAllDepartments();
+
+    const departmentSelection = {
+      type: "list",
+      message: "Please choose a department to see its total spending:",
+      name: "id",
+      choices: generateChoiceList(departments, "depName"),
+    };
+
+    const { id } = await getAnswers(departmentSelection);
+
+    const response = await fetch(`${baseUrl}/api/employees/department/${id}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    if (response.ok) {
+      const result = (await response.json()).data;
+      const totalSpend = result.reduce((accumulator, object) => {
+        return accumulator + object.salary;
+      }, 0);
+      return {
+        result,
+        totalSpend,
+      };
+    } else {
+      throw new Error("Failed to fetch data");
+    }
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
 module.exports = {
   getAllDepartments,
   getAllEmployees,
   getEmployeesByDepartment,
   getAllRoles,
   getEmployeesByManager,
+  getDepartmentSpend,
 };
