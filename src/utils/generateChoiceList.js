@@ -2,7 +2,7 @@ const generateChoiceList = (array, name) => {
   return array.map((each) => {
     return {
       name: each[name],
-      value: each.id,
+      id: each.id,
     };
   });
 };
@@ -12,7 +12,7 @@ const generateManagerList = (array) => {
     const index = array.findIndex((element) => element.id === each);
     return {
       id: array[index].id,
-      managerName: `${array[index].firstName} ${array[index.lastName]}`,
+      name: `${array[index].firstName} ${array[index.lastName]}`,
     };
   };
   const managerId = array
