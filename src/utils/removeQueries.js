@@ -94,7 +94,7 @@ const removeRole = async () => {
 const removeEmployee = async () => {
   try {
     const employees = await getAllEmployees();
-    if (roles.length) {
+    if (employees.length) {
       const pickEmployeeQuestions = [
         {
           type: "list",

@@ -2,7 +2,7 @@ const generateChoiceList = (array, name) => {
   return array.map((each) => {
     return {
       name: each[name],
-      id: each.id,
+      value: each.id,
     };
   });
 };
@@ -11,7 +11,7 @@ const generateManagerList = (array) => {
   const getManagerInfo = (each) => {
     const index = array.findIndex((element) => element.id === each);
     return {
-      id: array[index].id,
+      value: array[index].id,
       name: `${array[index].firstName} ${array[index.lastName]}`,
     };
   };
@@ -24,7 +24,7 @@ const generateManagerList = (array) => {
 const generateEmployeeList = (array) => {
   const getManagerInfo = (each) => {
     return {
-      id: each.id,
+      value: each.id,
       name: `${each.firstName} ${each.lastName}`,
     };
   };

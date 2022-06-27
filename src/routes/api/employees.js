@@ -14,7 +14,7 @@ router.get("/", viewAllEmployees);
 router.post("/", addEmployee);
 router.delete("/:id", removeEmployee);
 router.put("/:id", updateEmployee);
-router.get("/department/:depId", viewEmployeesByDepartment);
-router.get("/manager/:managerId", viewEmployeesByManager);
+router.get("/department/:id", viewEmployeesByDepartment);
+router.get("/manager/:id", viewEmployeesByManager);
 
 module.exports = router;
