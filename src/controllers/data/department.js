@@ -57,35 +57,8 @@ const removeDepartment = async (req, res) => {
   }
 };
 
-const viewDepartmentSpend = async (req, res) => {
-  try {
-    const { depId } = req.params;
-    const depSpend = await req.db.query(
-      `SELECT departments.depName as "Department", SUM(roles.salary) "Department Spend"
-    FROM employees
-    LEFT JOIN roles ON roles.id = employees.roleId
-    LEFT JOIN departments ON roles.depId = departments.id
-    WHERE departments.id = ?`,
-      [depId]
-    );
-
-    return res.json({
-      success: true,
-      data: depSpend,
-    });
-  } catch (error) {
-    console.log(`[ERROR: Failed to get department spend | ${error.message}]`);
-
-    return res.status(500).json({
-      success: false,
-      error: "Failed to get department spend",
-    });
-  }
-};
-
 module.exports = {
   viewAllDepartments,
   addDepartment,
   removeDepartment,
-  viewDepartmentSpend,
 };

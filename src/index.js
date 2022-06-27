@@ -7,7 +7,6 @@ const {
   getEmployeesByDepartment,
   getAllRoles,
   getEmployeesByManager,
-  getDepartmentSpend,
 } = require("./utils/viewQueries");
 const { addDepartment, addRole, addEmployee } = require("./utils/addQueries");
 const {
@@ -81,14 +80,6 @@ const init = async () => {
       const result = await removeEmployee();
       console.log("Employee successfully removed");
     }
-    if (selection === "viewDepartmentSpend") {
-      const result = await getDepartmentSpend();
-      console.log(
-        `The total spend for this department is: ${result.totalSpend}`
-      );
-      console.table(result.result);
-    }
-
     if (selection === "quit") {
       inProgress = false;
       console.log(

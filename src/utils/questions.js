@@ -31,11 +31,6 @@ const selectionQuestion = {
       short: "viewEmployeesByManager",
     },
     {
-      value: "viewDepartmentSpend",
-      name: "View total department spend",
-      short: "viewDepartmentSpend",
-    },
-    {
       value: "addDepartment",
       name: "Add a Department",
       short: "addDepartment",
