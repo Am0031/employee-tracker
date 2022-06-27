@@ -44,34 +44,6 @@ const viewEmployeesByDepartment = async (req, res) => {
   }
 };
 
-const viewEmployeesByManager = async (req, res) => {
-  try {
-    const { id } = req.params;
-    const [filteredEmployees] = await req.db.query(
-      `SELECT emp.id, emp.firstName AS 'first name', emp.lastName AS 'last name', roles.title AS 'role', CONCAT (employeeManager.firstName, " ", employeeManager.lastName) AS "Manager"
-      FROM employees emp
-      LEFT JOIN roles ON emp.roleId = roles.id
-      LEFT JOIN employees employeeManager ON emp.managerId = employeeManager.id
-      WHERE emp.managerId =?`,
-      [id]
-    );
-
-    return res.json({
-      success: true,
-      data: filteredEmployees,
-    });
-  } catch (error) {
-    console.log(
-      `[ERROR: Failed to get employees for that department | ${error.message}]`
-    );
-
-    return res.status(500).json({
-      success: false,
-      error: "Failed to get employees for that department",
-    });
-  }
-};
-
 const addEmployee = async (req, res) => {
   try {
     const payload = req.body;
@@ -140,7 +112,6 @@ const removeEmployee = async (req, res) => {
 module.exports = {
   viewAllEmployees,
   viewEmployeesByDepartment,
-  viewEmployeesByManager,
   addEmployee,
   updateEmployee,
   removeEmployee,

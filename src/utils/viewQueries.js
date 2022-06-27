@@ -132,7 +132,7 @@ const getEmployeesByManager = async () => {
 
     const { id } = await getAnswers(managerSelection);
 
-    const response = await fetch(`${baseUrl}/api/employees/manager/${id}`, {
+    const response = await fetch(`${baseUrl}/api/managers/${id}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
