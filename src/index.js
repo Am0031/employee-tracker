@@ -1,3 +1,4 @@
+const open = require("open");
 const startApp = require("./utils/server");
 const getAnswers = require("./utils/getAnswers");
 const { selectionQuestion } = require("./utils/questions");
@@ -16,6 +17,20 @@ const {
 } = require("./utils/removeQueries");
 const { updateEmployee } = require("./utils/updateQueries");
 const cTable = require("console.table");
+const writeToFile = require("./utils/writeToFile");
+const generateHtml = require("./utils/generateHtml");
+
+const generateReport = async () => {
+  const departments = await getAllDepartments();
+  const roles = await getAllRoles();
+  const employees = await getAllEmployees();
+
+  const htmlString = generateHtml(departments, roles, employees);
+  writeToFile("report", htmlString);
+  open(`http://127.0.0.1:5500/dist/report.html`, {
+    app: "chrome",
+  });
+};
 
 const init = async () => {
   startApp();
@@ -82,9 +97,10 @@ const init = async () => {
     }
     if (selection === "quit") {
       inProgress = false;
-      console.log(
-        "Thank you for using the Employee Management System! Goodbye!"
-      );
+      console.log("Thank you for using the Employee Management System!");
+      await generateReport();
+      console.log("Your company report has been generated! Goodbye!");
+      process.exit();
     }
   }
 };
