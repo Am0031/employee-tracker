@@ -24,7 +24,7 @@ const viewEmployeesByManager = async (req, res) => {
   try {
     const { id } = req.params;
     const [filteredEmployees] = await req.db.query(
-      `SELECT emp.id, emp.firstName AS 'first name', emp.lastName AS 'last name', roles.title AS 'role', CONCAT (employeeManager.firstName, " ", employeeManager.lastName) AS "Manager"
+      `SELECT emp.id, emp.firstName AS 'First Name', emp.lastName AS 'Last Name', roles.title AS 'role', CONCAT (employeeManager.firstName, " ", employeeManager.lastName) AS "Manager"
       FROM employees emp
       LEFT JOIN roles ON emp.roleId = roles.id
       LEFT JOIN employees employeeManager ON emp.managerId = employeeManager.id

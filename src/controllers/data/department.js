@@ -1,6 +1,8 @@
 const viewAllDepartments = async (req, res) => {
   try {
-    const [departments] = await req.db.query("SELECT * FROM departments");
+    const [departments] = await req.db.query(
+      "SELECT departments.id, departments.depName AS 'Department Name' FROM departments"
+    );
 
     return res.json({
       success: true,

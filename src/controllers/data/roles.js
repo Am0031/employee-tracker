@@ -1,6 +1,9 @@
 const viewAllRoles = async (req, res) => {
   try {
-    const [roles] = await req.db.query("SELECT * FROM roles");
+    const [roles] = await req.db
+      .query(`SELECT roles.id, roles.title AS 'Role', roles.salary AS 'Salary', departments.depName AS 'Department' 
+    FROM roles
+    LEFT JOIN departments ON roles.depId = departments.id`);
 
     return res.json({
       success: true,

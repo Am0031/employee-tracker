@@ -97,7 +97,7 @@ const getEmployeesByDepartment = async () => {
       type: "list",
       message: "Please choose a department to see its employees:",
       name: "id",
-      choices: generateChoiceList(departments, "depName"),
+      choices: generateChoiceList(departments, "Department Name"),
     };
 
     const { id } = await getAnswers(departmentSelection);
