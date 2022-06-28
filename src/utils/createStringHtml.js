@@ -106,6 +106,8 @@ const createEmployeeHtml = (employees) => {
     <th>First Name</th>
     <th>Last Name</th>
     <th>Role</th>
+    <th>Salary</th>
+    <th>Department</th>
     <th>Manager</th>
   </tr></thead>
   <tbody>
