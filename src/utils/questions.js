@@ -1,3 +1,4 @@
+//selection question presented to the user with the while loop
 const selectionQuestion = {
   type: "list",
   message: "Please select an action:",

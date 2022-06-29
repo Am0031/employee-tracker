@@ -1,4 +1,6 @@
 require("dotenv").config();
+
+//require all the functions and modules needed
 const fetch = require("node-fetch");
 const getAnswers = require("./getAnswers");
 const {
@@ -13,6 +15,7 @@ const {
 const PORT = process.env.PORT || 4000;
 const baseUrl = `http://${process.env.DB_HOST}:${PORT}`;
 
+//function to ask details and confirmation and then removes the department (and its associated roles and employees) from db
 const removeDepartment = async () => {
   try {
     const departments = await getAllDepartments();
@@ -52,6 +55,7 @@ const removeDepartment = async () => {
   }
 };
 
+//function to ask details and confirmation and then removes the role (and its associated employees) from db
 const removeRole = async () => {
   try {
     const roles = await getAllRoles();
@@ -91,6 +95,7 @@ const removeRole = async () => {
   }
 };
 
+//function to ask details and confirmation and then removes the employee from db
 const removeEmployee = async () => {
   try {
     const employees = await getAllEmployees();

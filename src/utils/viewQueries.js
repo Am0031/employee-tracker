@@ -1,14 +1,13 @@
 require("dotenv").config();
+
+//require all functions and modules needed
 const fetch = require("node-fetch");
-const inquirer = require("inquirer");
 const getAnswers = require("./getAnswers");
-const {
-  generateChoiceList,
-  generateEmployeeList,
-} = require("./generateChoiceList");
+const { generateChoiceList } = require("./generateChoiceList");
 const PORT = process.env.PORT || 4000;
 const baseUrl = `http://${process.env.DB_HOST}:${PORT}`;
 
+//function to get all department names from db and return it to the main index.js
 const getAllDepartments = async () => {
   try {
     const response = await fetch(`${baseUrl}/api/departments`, {
@@ -29,6 +28,7 @@ const getAllDepartments = async () => {
   }
 };
 
+//function to get all roles from db and return it to the main index.js
 const getAllRoles = async () => {
   try {
     const response = await fetch(`${baseUrl}/api/roles`, {
@@ -49,6 +49,7 @@ const getAllRoles = async () => {
   }
 };
 
+//function to get all employees from db and return it to the main index.js
 const getAllEmployees = async () => {
   try {
     const response = await fetch(`${baseUrl}/api/employees`, {
@@ -69,6 +70,7 @@ const getAllEmployees = async () => {
   }
 };
 
+//helper function to get all employees assigned as managers (called in viewEmployeesByManager)
 const getManagers = async () => {
   try {
     const response = await fetch(`${baseUrl}/api/managers`, {
@@ -89,6 +91,7 @@ const getManagers = async () => {
   }
 };
 
+//function to get all employees in a department from db and return it to the main index.js
 const getEmployeesByDepartment = async () => {
   try {
     const departments = await getAllDepartments();
@@ -119,6 +122,7 @@ const getEmployeesByDepartment = async () => {
   }
 };
 
+//function to get all employees under a manager from db and return it to the main index.js
 const getEmployeesByManager = async () => {
   try {
     const managers = await getManagers();
@@ -149,6 +153,7 @@ const getEmployeesByManager = async () => {
   }
 };
 
+//function to get the total spend of a department from db and return it to the main index.js
 const getSpendByDepartment = async () => {
   try {
     const departments = await getAllDepartments();

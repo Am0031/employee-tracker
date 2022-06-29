@@ -1,4 +1,6 @@
 require("dotenv").config();
+
+//require all functions and modules needed
 const fetch = require("node-fetch");
 const getAnswers = require("./getAnswers");
 const { generateEmployeeList } = require("./generateChoiceList");
@@ -6,6 +8,7 @@ const { getAllEmployees } = require("./viewQueries");
 const PORT = process.env.PORT || 4000;
 const baseUrl = `http://${process.env.DB_HOST}:${PORT}`;
 
+//function to ask details and update employee's manager details
 const updateEmployee = async () => {
   try {
     const employees = await getAllEmployees();

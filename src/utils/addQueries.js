@@ -1,4 +1,6 @@
 require("dotenv").config();
+
+//require all the functions and modules
 const fetch = require("node-fetch");
 const getAnswers = require("./getAnswers");
 const {
@@ -9,11 +11,11 @@ const {
   getAllDepartments,
   getAllEmployees,
   getAllRoles,
-  getManagers,
 } = require("./viewQueries");
 const PORT = process.env.PORT || 4000;
 const baseUrl = `http://${process.env.DB_HOST}:${PORT}`;
 
+//function to ask the details and then add the department to the db
 const addDepartment = async () => {
   try {
     const addDepartmentQuestions = [
@@ -48,6 +50,7 @@ const addDepartment = async () => {
   }
 };
 
+//function to ask the details and then add the role to the db
 const addRole = async () => {
   try {
     const departments = await getAllDepartments();
@@ -102,6 +105,7 @@ const addRole = async () => {
   }
 };
 
+//function to ask the details and then add the employee to the db
 const addEmployee = async () => {
   try {
     const departments = await getAllDepartments();
