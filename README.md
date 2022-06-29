@@ -1,8 +1,26 @@
-# employee-tracker
+# Employee tracker
 
-employee-tracker app using node.js, inquirer and MySQL
+![MIT](https://img.shields.io/badge/License-MIT-blue)
 
-## User Story
+## Summary of the project and links
+
+This is a team profile generator using node.js, the inquirer package and MySQL.
+
+Github repo: [Go to Repo](https://github.com/Am0031/employee-tracker/tree/dev)
+Demo video: [Go to Demo video]()
+
+## Table of Contents
+
+- [About the Project](#about-the-project)
+- [Technologies](#technologies)
+- [Main logic of the application](#main-logic-of-the-application)
+- [Installation](#installation)
+- [Demo video](#demo-video-of-the-application)
+- [Contact me](#contact-me)
+
+## About the Project
+
+### User Story
 
 ```md
 AS A business owner
@@ -10,88 +28,125 @@ I WANT to be able to view and manage the departments, roles, and employees in my
 SO THAT I can organize and plan my business
 ```
 
-## Acceptance Criteria
+### Further details
 
-```md
-GIVEN a command-line application that accepts user input
-WHEN I start the application
-THEN I am presented with the following options: view all departments, view all roles, view all employees, add a department, add a role, add an employee, and update an employee role
-WHEN I choose to view all departments
-THEN I am presented with a formatted table showing department names and department ids
-WHEN I choose to view all roles
-THEN I am presented with the job title, role id, the department that role belongs to, and the salary for that role
-WHEN I choose to view all employees
-THEN I am presented with a formatted table showing employee data, including employee ids, first names, last names, job titles, departments, salaries, and managers that the employees report to
-WHEN I choose to add a department
-THEN I am prompted to enter the name of the department and that department is added to the database
-WHEN I choose to add a role
-THEN I am prompted to enter the name, salary, and department for the role and that role is added to the database
-WHEN I choose to add an employee
-THEN I am prompted to enter the employee’s first name, last name, role, and manager, and that employee is added to the database
-WHEN I choose to update an employee role
-THEN I am prompted to select an employee to update and their new role and this information is updated in the database
+When running the application, the business user is presented with a list of choices:
+
+```
+? Please select an action: (Use arrow keys)
+> View All Departments
+  View All Roles
+  View All Employees
+  View All Employees by Department
+  View All Employees by Manager
+  View Spend by Department
+  Add a Department
+  Add a Role
+  Add an Employee
+  Update an Employee's Manager
+  Remove a Department
+  Remove a Role
+  Remove an Employee
+  Quit application
+
 ```
 
-## Mock-Up
+This application uses Node.js, the inquirer package and MySQL. It presents the user with options on how they can interact with a company database.
 
-The following video shows an example of the application being used from the command line:
+After each selection, the user is presented with the result of their selection (see below) and the selection list again until they exit.
 
-[![A video thumbnail shows the command-line employee management application with a play button overlaying the view.](./other/12-sql-homework-video-thumbnail.png)](https://2u-20.wistia.com/medias/2lnle7xnpk)
+Result of the different selections:
 
-## Getting Started
+- viewing options: a table of the results
+- updating/adding options: further questions to gather the required information, with validation in place to make sure all the fields are filled in
+- removing options: selection and confirmation question to make sure the user is aware of the consequences of his choice.
+- quitting option: an exit message and the creation of an html report (based on the database status on exit)
 
-You’ll need to use the [MySQL2 package](https://www.npmjs.com/package/mysql2) to connect to your MySQL database and perform queries, the [Inquirer package](https://www.npmjs.com/package/inquirer) to interact with the user via the command line, and the [console.table package](https://www.npmjs.com/package/console.table) to print MySQL rows to the console.
+## Technologies
 
-**Important**: You will be committing a file that contains your database credentials. Make sure that your MySQL password is not used for any other personal accounts, because it will be visible on GitHub. In upcoming lessons, you will learn how to better secure this password, or you can start researching npm packages now that could help you.
+For this project, the following technologies and packages were used:
 
-You might also want to make your queries asynchronous. MySQL2 exposes a `.promise()` function on Connections to upgrade an existing non-Promise connection to use Promises. To learn more and make your queries asynchronous, refer to the [npm documentation on MySQL2](https://www.npmjs.com/package/mysql2).
+- Node.js v18.2.0 and NPM v8.9.0
+- Node core packages: fs (for reading/writing into files),
+- Node external packages:
+  "console.table": "^0.10.0",
+  "dotenv": "^16.0.1",
+  "express": "^4.18.1",
+  "inquirer": "^8.2.4",
+  "mysql2": "^2.3.3",
+  "node-fetch": "^2.6.7",
+  "open": "^8.4.0"
 
-Design the database schema as shown in the following image:
+## Main Logic of the application
+
+Design of the database:
 
 ![Database schema includes tables labeled “employee,” role,” and “department.”](./other/12-sql-homework-demo-01.png)
 
-As the image illustrates, your schema should contain the following three tables:
+Routes:
+![Routes diagram](./other/screenshots/main-logic.png)
 
-- `department`
+## Installation
 
-  - `id`: `INT PRIMARY KEY`
+To get this project installed, the following steps are required:
 
-  - `name`: `VARCHAR(30)` to hold department name
+Clone the repository, using SSH keys:
 
-- `role`
+```
+git clone git@github.com:Am0031/employee-tracker.git
+```
 
-  - `id`: `INT PRIMARY KEY`
+Or using HTTPS link:
 
-  - `title`: `VARCHAR(30)` to hold role title
+```
+git clone https://github.com/Am0031/employee-tracker.git
+```
 
-  - `salary`: `DECIMAL` to hold role salary
+Go into the new repository and install the required packages:
 
-  - `department_id`: `INT` to hold reference to department role belongs to
+```
+cd employee-tracker
+npm install
+```
 
-- `employee`
+Once installed, to get this project running, the following command must be entered in the CLI:
 
-  - `id`: `INT PRIMARY KEY`
+Step 1: Database setup
 
-  - `first_name`: `VARCHAR(30)` to hold employee first name
+From the db folder, open an integrated terminal and enter the instructions below in this order, one line at a time, pressing enter after each line:
 
-  - `last_name`: `VARCHAR(30)` to hold employee last name
+```
+mysql -u root -p
+(enter your password when prompted)
 
-  - `role_id`: `INT` to hold reference to employee role
+source schema.sql
 
-  - `manager_id`: `INT` to hold reference to another employee that is the manager of the current employee (`null` if the employee has no manager)
+source depSeed.sql
 
-You might want to use a separate file that contains functions for performing specific SQL queries you'll need to use. A constructor function or class could be helpful for organizing these. You might also want to include a `seeds.sql` file to pre-populate your database, making the development of individual features much easier.
+source roleSeed.sql
 
-## Bonus
+source employeeSeed.sql
 
-Try to add some additional functionality to your application, such as the ability to do the following:
+quit
+```
 
-- Update employee managers.
+Step 2: Start the application
 
-- View employees by manager.
+From the root folder, open an integrated terminal and enter the instruction below and press enter:
 
-- View employees by department.
+```
+npm run start
+```
 
-- Delete departments, roles, and employees.
+## Demo video of the application
 
-- View the total utilized budget of a department&mdash;in other words, the combined salaries of all employees in that department.
+This video shows how the application works.
+Please click [here](https://drive.google.com/file/d/1CH2OFQBZ5pyW4cKtX1qrRK81sBAKIvkC/view) to open the video.
+
+![Team profile demo gif](./other/team-profile-demo.gif)
+
+You can check out the html report that this application creates on exit by looking at the file ["report.html"](./dist/report.html) available in this repository.
+
+## Contact me
+
+If you have any questions about this application, feel free to get in touch by sending me an [email](mailto:amelie.pira@gmail.com).
