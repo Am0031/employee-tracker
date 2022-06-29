@@ -1,7 +1,7 @@
 const getManagers = async (req, res) => {
   try {
     const [managers] = await req.db.query(
-      `SELECT employees.id, employees.firstName, employees.lastName
+      `SELECT employees.id, CONCAT (employees.firstName, " ", employees.lastName) AS "Manager Name"
       FROM employees 
       WHERE employees.id IN (SELECT DISTINCT managerId FROM employees WHERE managerId IS NOT NULL)`
     );

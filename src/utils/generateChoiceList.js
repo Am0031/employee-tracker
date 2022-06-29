@@ -11,7 +11,7 @@ const generateEmployeeList = (array) => {
   const getManagerInfo = (each) => {
     return {
       value: each.id,
-      name: `${each.firstName} ${each.lastName}`,
+      name: `${each.First_Name} ${each.Last_Name}`,
     };
   };
   return array.map(getManagerInfo);

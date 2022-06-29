@@ -8,6 +8,7 @@ const {
   getEmployeesByDepartment,
   getAllRoles,
   getEmployeesByManager,
+  getSpendByDepartment,
 } = require("./utils/viewQueries");
 const { addDepartment, addRole, addEmployee } = require("./utils/addQueries");
 const {
@@ -60,7 +61,7 @@ const init = async () => {
       console.table(result);
     }
     if (selection === "viewDepartmentSpend") {
-      const result = await getDepartmentSpend();
+      const result = await getSpendByDepartment();
       console.table(result);
     }
     if (selection === "addDepartment") {

@@ -9,6 +9,7 @@ const {
   getAllDepartments,
   getAllEmployees,
   getAllRoles,
+  getManagers,
 } = require("./viewQueries");
 const PORT = process.env.PORT || 4000;
 const baseUrl = `http://${process.env.DB_HOST}:${PORT}`;
@@ -59,6 +60,10 @@ const addRole = async () => {
           type: "input",
           name: "title",
           message: "What's the title of the role?",
+          validate: (answer) =>
+            !answer
+              ? "This is a mandatory field. Please enter a role title."
+              : true,
         },
         {
           type: "input",
@@ -73,7 +78,7 @@ const addRole = async () => {
           type: "list",
           name: "depId",
           message: "Please select the department this role belongs to:",
-          choices: generateChoiceList(departments, "depName"),
+          choices: generateChoiceList(departments, "Department Name"),
         },
       ];
       const { title, salary, depId } = await getAnswers(addRoleQuestions);
@@ -114,17 +119,25 @@ const addEmployee = async () => {
           type: "input",
           message: "What's the employee's first name?",
           name: "firstName",
+          validate: (answer) =>
+            !answer
+              ? "This is a mandatory field. Please enter a first name."
+              : true,
         },
         {
           type: "input",
           message: "What's the employee's last name?",
           name: "lastName",
+          validate: (answer) =>
+            !answer
+              ? "This is a mandatory field. Please enter a last name."
+              : true,
         },
         {
           type: "list",
           message: "Please select the employee's role:",
           name: "roleId",
-          choices: generateChoiceList(roles, "title"),
+          choices: generateChoiceList(roles, "Role"),
         },
       ];
       const { firstName, lastName, roleId } = await getAnswers(

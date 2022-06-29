@@ -1,5 +1,3 @@
-const inquirer = require("inquirer");
-
 const selectionQuestion = {
   type: "list",
   message: "Please select an action:",
@@ -29,6 +27,11 @@ const selectionQuestion = {
       value: "viewEmployeesByManager",
       name: "View All Employees by Manager",
       short: "viewEmployeesByManager",
+    },
+    {
+      value: "viewDepartmentSpend",
+      name: "View Spend by Department",
+      short: "viewDepartmentSpend",
     },
     {
       value: "addDepartment",

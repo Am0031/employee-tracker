@@ -22,7 +22,7 @@ const removeDepartment = async () => {
           type: "list",
           name: "id",
           message: "Which department would you like to remove?",
-          choices: generateChoiceList(departments, "depName"),
+          choices: generateChoiceList(departments, "Department Name"),
         },
         {
           type: "confirm",
@@ -61,7 +61,7 @@ const removeRole = async () => {
           type: "list",
           name: "id",
           message: "Which role would you like to remove?",
-          choices: generateChoiceList(roles, "title"),
+          choices: generateChoiceList(roles, "Role"),
         },
         {
           type: "confirm",

@@ -1,7 +1,7 @@
 const viewAllEmployees = async (req, res) => {
   try {
     const [employees] = await req.db
-      .query(`SELECT emp.id, emp.firstName AS 'First Name', emp.lastName AS 'Last Name', roles.title AS 'Role', roles.salary AS 'Salary', departments.depName AS 'Department', CONCAT (employeeManager.firstName, " ", employeeManager.lastName) AS 'Manager'
+      .query(`SELECT emp.id, emp.firstName AS 'First_Name', emp.lastName AS 'Last_Name', roles.title AS 'Role', roles.salary AS 'Salary', departments.depName AS 'Department', CONCAT (employeeManager.firstName, " ", employeeManager.lastName) AS 'Manager'
     FROM employees emp
     LEFT JOIN roles ON emp.roleId = roles.id
     LEFT JOIN departments ON roles.depId = departments.id
