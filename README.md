@@ -109,9 +109,20 @@ cd employee-tracker
 npm install
 ```
 
-Once installed, to get this project running, the following command must be entered in the CLI:
+Once installed, to get this project running, the following steps must be followed:
 
-Step 1: Database setup
+Step 1: Set the environment variables
+
+In the root folder, create a .env file. Copy the content from the .env.sample file into your newly created .env file and complete each line as per the below guidance:
+
+```
+DB_HOST= (enter "localhost" or your host details)
+DB_USER= (enter "root" or your user details)
+DB_PASSWORD= (enter your mysql password)
+DB_NAME= "company_db"
+```
+
+Step 2: Database setup
 
 From the db folder, open an integrated terminal and enter the instructions below in this order, one line at a time, pressing enter after each line:
 
