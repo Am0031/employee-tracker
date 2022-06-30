@@ -1,9 +1,14 @@
 const { Router } = require("express");
 
-const { renderHtml } = require("../../controllers/views");
+//route to functions for front end - functions to be developed in the next update
+const {
+  renderStartPage,
+  renderReportPage,
+} = require("../../controllers/views");
 
 const router = Router();
 
-router.get("/", renderHtml);
+router.get("/", renderStartPage);
+router.get("/report", renderReportPage);
 
 module.exports = router;

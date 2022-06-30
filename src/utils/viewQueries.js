@@ -105,7 +105,7 @@ const getEmployeesByDepartment = async () => {
 
     const { id } = await getAnswers(departmentSelection);
 
-    const response = await fetch(`${baseUrl}/api/employees/department/${id}`, {
+    const response = await fetch(`${baseUrl}/api/departments/employees/${id}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

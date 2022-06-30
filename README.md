@@ -4,7 +4,7 @@
 
 ## Summary of the project and links
 
-This is a team profile generator using node.js, the inquirer package and MySQL.
+This is a team profile generator using node.js, the inquirer package and MySQL. It also uses an express server and has routes set up for potential future updates and front end extensions.
 
 Github repo: [Go to Repo](https://github.com/Am0031/employee-tracker/tree/dev)
 Demo video: [Go to Demo video]()
@@ -84,7 +84,7 @@ Design of the database:
 ![Database schema includes tables labeled “employee,” role,” and “department.”](./other/12-sql-homework-demo-01.png)
 
 Routes:
-![Routes diagram](./other/screenshots/main-logic.png)
+![Routes diagram](./other/screenshot-server-routes.png)
 
 ## Installation
 
@@ -154,7 +154,7 @@ npm run start
 This video shows how the application works.
 Please click [here](https://drive.google.com/file/d/1CH2OFQBZ5pyW4cKtX1qrRK81sBAKIvkC/view) to open the video.
 
-![Team profile demo gif](./other/team-profile-demo.gif)
+![Demo gif](./other/team-profile-demo.gif)
 
 You can check out the html report that this application creates on exit by looking at the file ["report.html"](./dist/report.html) available in this repository.
 
