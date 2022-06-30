@@ -69,13 +69,13 @@ For this project, the following technologies and packages were used:
 - Node.js v18.2.0 and NPM v8.9.0
 - Node core packages: fs (for reading/writing into files),
 - Node external packages:
-  "console.table": "^0.10.0",
-  "dotenv": "^16.0.1",
-  "express": "^4.18.1",
-  "inquirer": "^8.2.4",
-  "mysql2": "^2.3.3",
-  "node-fetch": "^2.6.7",
-  "open": "^8.4.0"
+  - "console.table": "^0.10.0",
+  - "dotenv": "^16.0.1",
+  - "express": "^4.18.1",
+  - "inquirer": "^8.2.4",
+  - "mysql2": "^2.3.3",
+  - "node-fetch": "^2.6.7",
+  - "open": "^8.4.0"
 
 ## Main Logic of the application
 
