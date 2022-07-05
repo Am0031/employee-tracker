@@ -141,7 +141,7 @@ source employeeSeed.sql
 quit
 ```
 
-Step 2: Start the application
+Step 3: Start the application
 
 From the root folder, open an integrated terminal and enter the instruction below and press enter:
 
